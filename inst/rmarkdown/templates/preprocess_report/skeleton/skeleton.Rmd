@@ -1,0 +1,212 @@
+---
+title: "Preprocess report"
+author:
+   - name: Username
+date: "`r Sys.time()`"
+output: 
+    html_document:
+        toc: true
+        number_sections: false
+        toc_float: true
+---
+
+
+<!--------- INSTRUCTIONS ----------
+This template would help you to structure and share your preprocessing. 
+It is based on the ESM preprocessing framework described in Revol and al. (under review) 
+In addition, it is associated with an R package, the esmtools package (https://package.esmtools.com), 
+and a website to provide tutorials and R code for each step: https://preprocess.esmtools.com.
+Please, follow the instructions commented and add descriptions above each chunk you create. 
+that mainly use esmtools functions (e.g., buttons) to enhanced user experience. 
+Note that the commented instructions are not displayed in the rendered document. 
+<!--------------------------------->
+
+
+<!-- The following CSS code set up the font that is used to highlight elements in the file (issues and Modifications). -->
+<!-- You can adapt it if you want another font type, color, etc. -->
+<style>
+/* Highligh issue text */
+#text_issue{
+    font-weight: bold;
+    color:#e61919;
+    text-decoration: underline #e61919 2px;
+}
+
+/* Highlight data inspection text */
+#text_inspect{
+    font-weight: bold;
+    text-decoration: underline 2px;
+}
+
+/* Highlight data modification text */
+#text_mod{
+    font-weight: bold;
+    color:#e61919;
+    text-decoration: underline #e61919 2px;
+}
+</style>
+
+
+
+<!-- This first chunk define the global settings and hidden variables of the file. -->
+```{r, include=FALSE}
+# Setup hiden variables
+er = 0
+
+# Setup settings
+knitr::opts_chunk$set(echo=TRUE, message=FALSE, warning=FALSE)
+```
+  
+
+
+This template follows the preprocessing framework described in Revol and al. (under review) and can be found in a R package [esmbooks](https://gitlab.kuleuven.be/ppw-okpiv/researchers/u0148925/esmbooks). 
+
+
+
+
+
+# Study and data collection procedure
+<!-- 
+INSTRUCTIONS:
+In this section, describe the design and the sampling scheme used to collect the data.
+It will be later useful when investigating the data. 
+-->
+
+
+# Import
+
+<!-- INSTRUCTION: before or after each chunk, please add a short description of what is done/displayed, as follows: -->
+
+Import the packages:
+```{r, message=FALSE, warning=FALSE}
+# For instance:
+library(ggplot2) # Used to create plots
+```
+
+Import the data:
+```{r}
+data = read.csv("path_to_file.csv")
+```
+
+
+# Step 1: Getting to know your data and initial preprocessing
+
+This section is dedicated to the first look at the data, the first basic preprocessing methods, and checking the variable consistency when the data has just been imported.
+
+
+<!-- INSTRUCTIONS: the HTML code below (span tags) helps to highlight the important information in the document. -->
+<!-- In particular, the issues discovered and the modifications done to the dataset. -->
+<!-- Note that it must be used for each step (not only this first one). -->
+
+
+<!-- Whenever you have spotted an issue give it a name and add a description. -->
+<!-- To highlight the issues in a consistent way, start as follows -->
+<span id="text_issue"> Issue `r er=er+1 ; er`:</span> DESCRIPTION
+
+```{r}
+
+```
+
+
+<!-- Whenever you have spotted an issue, it may be convenient to further support it by displaying the problematic rows themselves. -->
+<!-- Indeed, functions and plots may sometimes be misleading about potential issues.  -->
+<!-- To highlight the data inspection in a consistent way, start as follows -->
+<span id="text_inspect"> Data inspection:</span> DESCRIPTION
+
+```{r}
+
+```
+
+
+<!-- Whenever you modify the dataset, report it and explain exactly what has been modified. -->
+<!-- To highlight the data modifications in a consistent way, start as follows -->
+<span id="text_modif"> Data modification: </span> DESCRIPTION
+
+```{r}
+
+```
+
+
+
+
+
+# Step 2: Design and sample scheme checking
+
+This section is dedicated to checking and solving issues due to inconsistencies between the planned and the actual design of the study.
+
+```{r}
+
+```
+
+
+
+
+
+
+# Step 3: Participants response behaviors
+
+This section is dedicated to investigating how well participants engaged with the ESM study looking particularly for problematic patterns of behaviors (e.g., invalid observations, response time, careless responding).
+
+
+```{r}
+
+```
+
+
+
+
+
+
+# Step 4: Compute and transform variables
+
+This section is dedicated to computing and modifying variables of interest that will later be used in visualization and statistical analysis.
+
+```{r}
+
+```
+
+
+
+
+# Step 5: Descriptive statistics and visualization
+
+This section is dedicated to examining various aspects of variables (such as distribution) and the differences both within and between participants.
+
+
+
+
+
+# Export preprocessed data
+
+The preprocessed data is finally exported.
+
+```{r}
+
+```
+
+
+
+
+
+
+# Session info
+
+For reproducibility purposes, this section informs about the R session and packages used as well as their versions.
+
+<!-- 
+Session info includes information such as R environment and package versions used, which ensures reproducibility.
+Dataset info includes information that ensures traceability and reproducibility (e.g., checksum, size, dimensions, date of modification). 
+-->
+```{r}
+sessionInfo()
+```
+
+Additionally, we display the meta-information of the preprocessed dataset. 
+
+```{r}
+esmtools::dataInfo(file_path=file_path_preproc, 
+                   read_fun = read.csv,
+                   idvar="id", timevar="sent")
+```
+
+

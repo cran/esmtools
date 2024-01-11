@@ -1,0 +1,3 @@
+name: preprocess_report
+description: This template provides a structured flow for organizing and sharing your preprocessing workflow of ESM data based on the framework proposed by Jordan et al. (in preparation).
+create_dir: false

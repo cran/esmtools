@@ -1,0 +1,46 @@
+Package: esmtools
+Title: Preprocessing Experience Sampling Method (ESM) Data
+Version: 1.0.0
+Authors@R: c(
+    person("Jordan", "Revol", , "jordan.revol@kuleuven.be", role = c("aut", "cre", "cph"),
+           comment = c(ORCID = "https://orcid.org/0000-0001-5511-3617")),
+    person("Koen", "Niemeijer", , "koen.niemeijer@kuleuven.be", role = "ctb",
+           comment = c(ORCID = "https://orcid.org/0000-0002-0816-534X"))
+  )
+Maintainer: Jordan Revol <jordan.revol@kuleuven.be>
+Description: Tailored explicitly for Experience Sampling Method (ESM)
+    data, it contains a suite of functions designed to simplify
+    preprocessing steps and create subsequent reporting. It empowers
+    users with capabilities to extract critical insights during
+    preprocessing, conducts thorough data quality assessments (e.g., design
+    and sampling scheme checks, compliance rate, careless responses), and
+    generates visualizations and concise summary tables tailored
+    specifically for ESM data. Additionally, it streamlines the creation
+    of informative and interactive preprocessing reports, enabling
+    researchers to transparently share their dataset preprocessing
+    methodologies. Finally, it is part of a larger ecosystem which
+    includes a framework and a web gallery
+    (<https://preprocess.esmtools.com/>).
+License: GPL (>= 3)
+URL:
+        https://gitlab.kuleuven.be/ppw-okpiv/researchers/u0148925/esmtools/,
+        https://package.esmtools.com/, https://preprocess.esmtools.com/
+BugReports: https://gitlab.kuleuven.be/ppw-okpiv/researchers/u0148925/esmtools/-/issues
+Depends: R (>= 4.0.0)
+Imports: base64enc (>= 0.1-3), dplyr (>= 1.1.0), DT (>= 0.28), fs (>=
+        1.6.0), ggplot2 (>= 3.4.0), ggpubr (>= 0.6.0), grDevices,
+        htmltools, jsonlite (>= 1.8.0), kableExtra (>= 1.3.0), knitr
+        (>= 1.43), lubridate (>= 1.9.0), stats, stringr (>= 1.5.0),
+        tidyr (>= 1.3.0), tools
+Suggests: readxl (>= 1.4.2), spelling, testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Encoding: UTF-8
+Language: en-US
+LazyData: true
+RoxygenNote: 7.2.3
+NeedsCompilation: no
+Packaged: 2024-01-10 20:13:28 UTC; Jr
+Author: Jordan Revol [aut, cre, cph] (<https://orcid.org/0000-0001-5511-3617>),
+  Koen Niemeijer [ctb] (<https://orcid.org/0000-0002-0816-534X>)
+Repository: CRAN
+Date/Publication: 2024-01-11 10:00:12 UTC

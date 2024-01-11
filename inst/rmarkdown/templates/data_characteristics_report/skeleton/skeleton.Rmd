@@ -1,0 +1,161 @@
+---
+title: "Data characteristics report"
+author:
+   - name: Username
+date: "`r Sys.time()`"
+output: 
+   html_document:
+      toc: true
+      number_sections: true
+      toc_float: true
+      code_folding: hide
+---
+
+
+<!--------- INSTRUCTIONS ----------
+This template would help you to structure and share the characteristic and the characteristics of your preprocessed dataset. 
+It is based on the ESM preprocessing framework described in Revol and al. (under review). 
+In addition, it is associated with an R packages, the esmtools package (package.esmtools.com), 
+and a website to provide tutorials and R code for each step: preprocess.esmtools.com. 
+Please, follow the instructions commented and add descriptions above each chunk you create. 
+Note that the commented instructions are not displayed in the rendered document. 
+<!--------------------------------->
+
+
+
+<!-- This first chunk define the global settings and hidden variables of the file. -->
+```{r, include=FALSE}
+# Setup settings
+knitr::opts_chunk$set(message=FALSE, warning=FALSE)
+```
+
+
+This template follows the preprocessing framework described in Revol et al. (2023) and can be found in the R package [esmtools](https://package.esmtools.com). 
+
+
+
+# Import
+
+<!-- INSTRUCTION: before or after each chunk, please add a short description of what is done/displayed, as follows: -->
+
+Import package
+```{r}
+library(ggplot2)
+```
+
+Import dataset
+<!-- 
+Two solutions are available:
+   1. If you work in synergy with a preprocessing report template, this file can be automatically knitted at the end of the preprocess report.
+      Every time the preprocess report is knitted, the data characteristics report is updated as well.
+      The path to the preprocessed dataset is shared with this data characteristics report through the 'params' variable.
+   2. Alternatively, you can specify the path to your preprocessed data, that will be used if no params variable is found. 
+-->
+```{r}
+if(exists(params) && !is.na(params$file_path)){
+    file_path = params$file_path_preproc
+} else {
+    file_path = "path/data_file.csv"
+}
+data = read.csv(file_path)
+```
+
+Session and Dataset info:
+<!-- 
+Session info includes information such as R environment and package versions used, which ensures reproducibility.
+Dataset info includes information that ensures traceability (e.g., date of modification, DOI, article associated) and reproducibility (e.g., checksum, size, dimensions) 
+-->
+```{r}
+sessionInfo()
+
+# The function dataInfo() from the esmtools package can provide further information of the dataset
+
+```
+
+
+Meta-info of the Preprocessed dataset:
+```{r}
+esmtools::dataInfo(file_path=file_path, read_fun = read.csv,
+                   idvar="id", timevar="sent")
+```
+
+
+# Codebook table
+
+In the table provided below, you will discover detailed information regarding each variable. 
+
+<!-- Create a table that provides descriptive information on the variables (e.g., statistics, label, code, item wording) -->
+
+```{r}
+
+```
+
+
+
+
+
+# Study and data characteristics
+
+Following, you will find a selection of plot and descriptive analysis that give insight into important aspects of how well the data follow the pre-defined sampling scheme and the study design, as well as whether participants engaged in problematic response behaviors (e.g., careless responding).
+
+<!-- 
+In this section, you can provide every relevant plot or function output of steps 1 to 3 of the ESM preprocess framework.
+The purpose is to help the reader to get important aspects that are related to the study and its participants (not the variables themselves).
+-->
+
+
+## Overview
+This section provides information about the global characteristics of the dataset (e.g., patterns of the missing values).
+<!-- 
+This section correspond to Step 1 of the preprocess ESM framework. 
+-->
+```{r}
+
+```
+
+
+
+## Design and sampling scheme
+Following, there are descriptive analyses and plots that give insight into the actual sample scheme and study design of the data.
+<!-- You can provide relevant information associated to step 2 of the ESM preprocessing framework -->
+```{r}
+
+```
+
+
+## Participants' response behaviors
+In this section, we provide insight into the extent to which the participants adhered to the sampling scheme and study design.
+<!-- You can provide relevant information associated to step 3 of the ESM preprocessing framework -->
+```{r}
+
+```
+
+
+
+# Variables and processes descriptions
+
+This section gives insight into the variables themselves (e.g., distribution, correlation plots).
+In particular, a selection of relevant plots are displayed that help to investigate the within- and between-person differences (e.g., in time series, variable distributions), and patterns (e.g., variation of responses in function of a time variable).
+Additionally, a sub-section contains a participant book providing specific data information about each participant.
+
+
+```{r}
+
+```
+
+
+
+
+## Participant book
+<!-- 
+Create a table that provides information about the participants' response behaviors (e.g., compliance, study duration, start time) 
+as well as descriptive statistics and time series plots of the variables of interest. 
+You can use the participant_book() function from the esmtools package 
+-->
+In the table below, you will find comprehensive information about each participant, including the start and end times of their participation, their response behaviors (e.g., compliance), as well as their time series and histogram data for the two variables of interest.
+
+```{r}
+
+```
+
+

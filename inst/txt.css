@@ -1,0 +1,19 @@
+/* Highligh issue text */
+.esm-issue{
+    font-weight: bold;
+    color:#e61919;
+    text-decoration: underline #e61919 2px;
+}
+
+/* Highlight data inspection text */
+.esm-inspect{
+    font-weight: bold;
+    text-decoration: underline 2px;
+}
+
+/* Highlight data modification text */
+.esm-mod{
+    font-weight: bold;
+    color:#0088a3;
+    text-decoration: underline #0088a3 2px;
+}

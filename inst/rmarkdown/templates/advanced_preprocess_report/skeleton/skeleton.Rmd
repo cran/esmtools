@@ -1,0 +1,273 @@
+---
+title: "Preprocess report"
+author:
+   - name: Username
+date: "`r Sys.time()`"
+output: 
+  html_document:
+    toc: true
+    number_sections: false
+    toc_float: true
+---
+
+
+<!--------- INSTRUCTIONS ----------
+This template would help you to structure and share your preprocessing. 
+It is based on the ESM preprocessing framework described in Revol and al. (under review) 
+In addition, it is associated with an R package, the esmtools package (https://package.esmtools.com), 
+and a website to provide tutorials and R code for each step: https://preprocess.esmtools.com.
+Please, follow the instructions commented and add descriptions above each chunk you create. 
+This advanced version of the ESM preprocessing report provides instructions on creating an interactive document 
+that mainly use esmtools functions (e.g., buttons) to enhanced user experience. 
+Note that the commented instructions are not displayed in the rendered document. 
+<!--------------------------------->
+
+
+<!-- 
+Txt() and button() css style:
+When importing 'esmtools' packages, it comes with CSS styles for class ('esm-issue', 'esm-inspect', 'esm-mod') used by the txt() and button() functions. 
+Customize them with CSS code in the provided style tag. 
+Modify fonts, colors, etc., as you like (an example is commented).
+In certain cases, you might need to use the '!important' declaration to override the default style definitions.
+-->
+<style>
+.esm-issue{
+  /* font-family: Georgia; */
+}
+</style>
+
+
+
+<!-- This first chunk define the global settings-->
+```{r, include=FALSE}
+# Setup global settings
+knitr::opts_chunk$set(message=FALSE, warning=FALSE)
+```
+  
+
+
+This template follows the preprocessing framework described in Revol and al. (in preparation) and can be found in the [esmtools](https://package.esmtools.com) R package. 
+
+
+# Study and data collection procedure
+<!-- 
+INSTRUCTIONS:
+In this section, describe the design and the sampling scheme used to collect the data.
+It will be later useful when investigating the data. 
+-->
+
+
+
+# Import packages and data
+
+<!-- INSTRUCTIONS: before or after each chunk, please add a short description of what is done/displayed, as follows: -->
+
+Import the packages:
+```{r, message=FALSE, warning=FALSE}
+library(esmtools) # For button(), txt() functions
+library(ggplot2)
+```
+
+Import the data:
+```{r}
+file_path = "path/to/file.csv"
+data = read.csv(file_path)
+```
+
+Raw dataset info:
+<!-- 
+Dataset info function from the esmtools package includes information that ensure tracability and reproducibility (e.g., checksum, size, dimensions, date of modification).
+-->
+```{r}
+read = read.csv()
+esmtools::dataInfo(file_path = file_path, 
+                   read_fun = read,
+                   idvar = "id", timevar = "sent")
+```
+
+
+
+
+# Step 1: Getting to know your data and initial preprocessing
+
+This section is dedicated to the first look at the data, the first basic preprocessing methods (e.g., duplicates, branching items check), and checking the variable consistency when the data has just been imported.
+
+<!-- 
+INSTRUCTIONS:
+The txt() function generates custom text to help highlighting the important information in the document.
+In particular, the issues discovered and the modifications done to the dataset. 
+
+Whenever you have spotted an issue in your dataset (e.g., duplication), you can use the inline code below (within ``).
+The arguments are the following:
+ - id: a character string that make the link with the css style
+ - title: the part that is highlitened. 
+ - text: give a description to the spotted issue
+ - count: a logical value (FALSE by default) indicating whether to include a count in the title part.
+Note for consiseness, you can remove the argument names (e.g., 'txt('esm-issue','Issue',"The issue is that ...",TRUE)').
+-->
+`r txt(id='esm-issue',title='Issue',text="The issue is that ...",count=TRUE)`
+
+```{r}
+
+```
+
+
+<!-- 
+Whenever you have spotted an issue, it may be convenient to further support it by displaying the problematic rows themselves.
+To highlight the data inspection in a consistent way, start as follows.
+-->
+`r txt('esm-inspect','Inspection',"Here we can see that ...")`
+
+```{r}
+
+```
+
+
+<!--
+Whenever you modify the dataset, report it and explain exactly what has been modified.
+To highlight the data modifications in a consistent way, start as follows 
+-->
+`r txt('esm-mod','Modification',"I changed ...",TRUE)`
+
+```{r}
+
+```
+
+
+
+
+<!-- 
+INSTRUCTIONS: 
+The button() and endbutton() functions delimite part of the document that can be revealed using a button.
+It is particularly useful to hide non-essential elements (but still important to report) to improve readibility.
+A name can be given to the button using the text argument.
+We propose two button names particularly relevant here.
+-->
+
+
+<!-- "Descriptive" button: add any descriptive analysis that helps to have a broad view of the data, such as summary tables. -->
+`r button(text = "Description")`
+
+```{r}
+# For instance :
+# describe(data)
+```
+
+`r endbutton()`
+
+
+<!--
+"Supplementary" button: add every other functions you used to inspect the data but that were not relevant to highlight the spotted issues. 
+In other words, it demonstrates what has been done to prove that (all) potential issues have been investigated. 
+-->
+`r button(text = "Supplementary")`
+
+```{r}
+
+```
+
+`r endbutton()`
+
+
+
+
+
+
+
+# Step 2: Design and sample scheme
+
+This section is dedicated to checking and solving issues due to inconsistencies between the planned and the actual design of the study.
+
+```{r}
+
+```
+
+
+
+
+
+
+# Step 3: Participants response behaviors
+
+This section is dedicated to investigating how well participants engaged with the ESM study looking particularly for problematic patterns of behaviors (e.g., invalid observations, response time, careless responding).
+
+```{r}
+
+```
+
+
+
+
+
+
+# Step 4: Compute and transform variables
+
+This section is dedicated to computing and modifying variables of interest that will later be used in visualization and statistical analysis.
+
+```{r}
+
+```
+
+
+
+
+# Step 5: Descriptive statistics and visualization
+
+This section is dedicated to examining various aspects of variables (such as distribution) and the differences both within and between participants.
+
+
+
+
+# Export preprocessed data
+
+Export the preprocessed data:
+```{r}
+file_path_preproc = "path/preprocessed_data.csv"
+write.csv(data, file_path_preproc, row.names=FALSE)
+```
+
+
+Run the data quality report:
+<!-- 
+INSTRUCTIONS: 
+The next chunk can be used to generate the data quality report dynamically every time you knit this document. 
+In other words, for every "new" version of your preprocessed data (along the preprocessing), a data quality report can be made.
+To do so, inform the 'rmark_file' argument and turn the 'eval' argument of the chunk to TRUE. 
+-->
+```{r, eval=FALSE}
+# Path to the data quality report (.Rmd format) 
+rmark_file = "path/data_quality_report.Rmd"
+
+# Name of the output data quality report. Date is included to keep track of changes
+filename_out = paste0(as.Date(Sys.time()), "_Data_Quality_Report.html")
+
+# Knit the data quality report
+rmarkdown::render(rmark_file, output_file=filename_out, params=list(file_path_preproc=file_path_preproc))
+```
+
+
+
+
+
+# Session and preprocessed data info
+
+For reproducibility purposes, this section informs about the R session and packages used as well as their versions.
+
+<!-- 
+Session info includes information such as R environment and package versions used, which ensures reproducibility.
+Dataset info includes information that ensures traceability and reproducibility (e.g., checksum, size, dimensions, date of modification). 
+-->
+```{r}
+sessionInfo()
+```
+
+Additionally, we display the meta-information of the preprocessed dataset. 
+
+```{r}
+esmtools::dataInfo(file_path=file_path_preproc, 
+                   read_fun = read.csv,
+                   idvar="id", timevar="sent")
+```
+
+
+

@@ -8,6 +8,7 @@
 #' @param .df A dataframe containing the data.
 #' @param group The name of the group variable.
 #' @param vars A vector of variable names to consider.
+#' @param max_length The maximum length of the merged values. If the length of the merged values exceeds this value, the values are truncated and an ellipsis is added at the end. Default is 4.
 #'
 #' @return A dataframe with unique values for each variable within each group modality.
 #'
@@ -15,8 +16,17 @@
 #' vars_consist(esmdata_sim, group = "id", vars = c("age", "cond_dyad"))
 #' @export
 #'
-vars_consist <- function(.df, group, vars) {
+vars_consist <- function(.df, group, vars, max_length=4) {
   if (length(group) > 1) stop("Only one group variable should be used.")
+
+  # Check if dataframe, transform to dataframe if possible
+  if (!is.data.frame(.df)) {
+    if (is.list(.df)) {
+      .df <- as.data.frame(.df)
+    } else {
+      stop("The input must be a dataframe.")
+    }
+  }
 
   .df[, group] <- as.character(.df[, group])
   .df[, group] <- ifelse(is.na(.df[, group]), "NA", .df[, group])
@@ -28,7 +38,7 @@ vars_consist <- function(.df, group, vars) {
   # Gather unique values for each variables within each group modality
   for (i in 1:length(vars)) {
     grouped_values <- split(.df[, vars[i]], .df[, group])
-    merged_values <- lapply(grouped_values, function(x) merge_val(unique(x)))
+    merged_values <- lapply(grouped_values, function(x) merge_val(unique(x), max_length=max_length))
     ordered_values <- unlist(merged_values)[order(match(names(merged_values), df_unique[, 1]))]
     df_unique[, 1 + i] <- unlist(ordered_values)
     # df_unique[, 1 + i] = ave(df[,vars[i]], df[,group], FUN = function(x) merge_val(unique(x)))
@@ -53,11 +63,14 @@ vars_consist <- function(.df, group, vars) {
 #' @import stringr
 #' @noRd
 
-merge_val <- function(vec) {
+merge_val <- function(vec, max_length=4) {
   if (length(vec) <= 1) {
     as.character(vec)
   } else if (length(vec) > 1) {
     vec[is.na(vec)] = "NA"
+    if (length(vec) > max_length) {
+      vec = c(vec[1:max_length], "...")
+    }
     paste0("(", str_c(as.character(vec), collapse = ", "), ")")
   }
 }

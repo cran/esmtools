@@ -34,11 +34,11 @@ resources helpful in your study:
 
 ## Installation
 
-You can install the development version of ‘esmtools’ like so:
+You can install the package like so:
 
-    remotes::install_gitlab("ppw-okpiv/researchers/u0148925/esmtools", 
-                            host="https://gitlab.kuleuven.be", 
-                            force=TRUE)
+    install.packages("esmtools")
+
+<!-- remotes::install_gitlab("ppw-okpiv/researchers/u0148925/esmtools", host="https://gitlab.kuleuven.be", force=TRUE) -->
 
 Once installed, you can load the package, as follows:
 
@@ -238,14 +238,13 @@ Additionally, the ‘button()’ and ‘endbutton()’ functions from the
 using a button. It is particularly useful to hide non-essential elements
 (but still important to report) to improve readibility.
 
-<div class="esmtools-container">
-
+<div class='esmtools-container'>
 <button class="esmtools-btn" onclick="esmtools_toggleContent(this)">
 Description
 </button>
-
-<div style="display:none;">
-
+<p>
+<div style='display:none;'>
+&#10;
 <style>
 .esmtools-container{
   &#10;}
@@ -406,9 +405,10 @@ print(2 + 2)
 #> [1] 4
 ```
 
+<p>
 </div>
-
 </div>
+</p>
 
 ## Datasets examples
 

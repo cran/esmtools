@@ -7,7 +7,7 @@
 txt(
   id = "text_issue",
   title = "Issue",
-  text = "Description",
+  text = "",
   count = TRUE,
   output_file = NULL
 )
@@ -39,34 +39,9 @@ if (interactive()) {
   # In RMarkdown, use 'r txt()`.
   # Do not call this function within a chunk
 
-  txt("text_issue", "Issue", text = "Wrong participant number", 
-      count = TRUE)
+  txt("text_issue", "Issue", text = "Wrong participant number")
   txt("text_mod", "Modification", text = "Change the participant number from 1 to 32", 
       count = FALSE)
 }
 
 }
-\keyword{Internal}
-\keyword{It's}
-\keyword{This}
-\keyword{an}
-\keyword{and}
-\keyword{code}
-\keyword{control}
-\keyword{controls}
-\keyword{directly.}
-\keyword{don't}
-\keyword{flag}
-\keyword{import}
-\keyword{in}
-\keyword{interact}
-\keyword{internal}
-\keyword{it}
-\keyword{need}
-\keyword{of}
-\keyword{package.}
-\keyword{the}
-\keyword{to}
-\keyword{users}
-\keyword{variable}
-\keyword{with}

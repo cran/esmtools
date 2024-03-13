@@ -20,8 +20,7 @@
 #'   # In RMarkdown, use 'r txt()`.
 #'   # Do not call this function within a chunk
 #' 
-#'   txt("text_issue", "Issue", text = "Wrong participant number", 
-#'       count = TRUE)
+#'   txt("text_issue", "Issue", text = "Wrong participant number")
 #'   txt("text_mod", "Modification", text = "Change the participant number from 1 to 32", 
 #'       count = FALSE)
 #' }
@@ -31,17 +30,7 @@
 #' @export
 
 
-txt <- function(id = "text_issue", title = "Issue", text = "Description", count = TRUE, output_file = NULL) {
-  # Count occurence
-  # if (!exists(".esm_count")) {
-  #     #' @keywords internal
-  #     #' Internal flag to control code import
-  #     #'
-  #     #' This flag controls the import of code in the package. It's an internal
-  #     #' variable and users don't need to interact with it directly.
-  #     .esm_count <- NULL # Explicit declaration
-  #     .esm_count <<- list()
-  # }
+txt <- function(id = "text_issue", title = "Issue", text = "", count = TRUE, output_file = NULL) {
   
   if (is.null(.esmtools.env$.esm_count[[id]])) {
     .esmtools.env$.esm_count[[id]] <- 1
@@ -51,12 +40,6 @@ txt <- function(id = "text_issue", title = "Issue", text = "Description", count 
 
   # Export in json if param$json_esm exists
   if(exists("params")){
-    #' @keywords internal
-    #' Internal flag to control code import
-    #'
-    #' This flag controls the import of code in the package. It's an internal
-    #' variable and users don't need to interact with it directly.
-    # params <- NULL # Explicit declaration
     test_exist <- TRUE
   } else {
     params <- NULL
@@ -89,13 +72,6 @@ txt <- function(id = "text_issue", title = "Issue", text = "Description", count 
         if (!file.exists(json_file)) {
           json_data <- list() # Create an empty list for JSON data
 
-          # #' @keywords internal
-          # #' Internal flag to control code import
-          # #'
-          # #' This flag controls the import of code in the package. It's an internal
-          # #' variable and users don't need to interact with it directly.
-          # json_created <- NULL
-          # json_created <<- TRUE
           .esmtools.env$.json_created <- TRUE
         } else {
           # Read existing JSON data from the file

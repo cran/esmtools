@@ -10,6 +10,24 @@ output:
     toc_float: true
 ---
 
+<!-- Javascript code to zoom in and out in the plots. -->
+<!-- Code from Radovan Miletić: https://stackoverflow.com/questions/56361986/zoom-function-in-rmarkdown-html-plot -->
+<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('body').prepend('<div class=\"zoomDiv\"><img src=\"\" class=\"zoomImg\"></div>');
+    // onClick function for all plots (img's)
+    $('img:not(.zoomImg)').click(function() {
+    $('.zoomImg').attr('src', $(this).attr('src')).css({width: '100%'});
+    $('.zoomDiv').css({opacity: '1', width: 'auto', border: '1px solid white', borderRadius: '5px', position: 'fixed', top: '50%', left: '50%', marginRight: '-50%', transform: 'translate(-50%, -50%)', boxShadow: '0px 0px 50px #888888', zIndex: '50', overflow: 'auto', maxHeight: '100%'});
+    });
+    // onClick function for zoomImg
+    $('img.zoomImg').click(function() {
+    $('.zoomDiv').css({opacity: '0', width: '0%'}); 
+    });
+});
+</script>
+
 
 <!--------- INSTRUCTIONS ----------
 This template would help you to structure and share your preprocessing. 
@@ -46,7 +64,8 @@ knitr::opts_chunk$set(message=FALSE, warning=FALSE)
   
 
 
-This template follows the preprocessing framework described in Revol and al. (in preparation) and can be found in the [esmtools](https://package.esmtools.com) R package. 
+This template follows the preprocessing framework described in Revol and al. (in preparation) and is stored in the [esmtools](https://package.esmtools.com) R package. 
+Additional instructions on creating reports and also on preprocessing ESM data can be found on the [ESM Preprocessing Gallery](https://preprocess.esmtools.com/) website. 
 
 
 # Study and data collection procedure
@@ -58,7 +77,7 @@ It will be later useful when investigating the data.
 
 
 
-# Import packages and data
+# Load packages
 
 <!-- INSTRUCTIONS: before or after each chunk, please add a short description of what is done/displayed, as follows: -->
 
@@ -67,6 +86,11 @@ Import the packages:
 library(esmtools) # For button(), txt() functions
 library(ggplot2)
 ```
+
+
+# Step 1: Import data and preliminary preprocessing
+
+This section is dedicated to the first look at the data, the merging of data sources the first basic preprocessing methods (e.g., duplicates, branching items check), and checking the variable consistency when the data has just been imported.
 
 Import the data:
 ```{r}
@@ -79,7 +103,7 @@ Raw dataset info:
 Dataset info function from the esmtools package includes information that ensure tracability and reproducibility (e.g., checksum, size, dimensions, date of modification).
 -->
 ```{r}
-read = read.csv()
+read = read.csv
 esmtools::dataInfo(file_path = file_path, 
                    read_fun = read,
                    idvar = "id", timevar = "sent")
@@ -88,9 +112,6 @@ esmtools::dataInfo(file_path = file_path,
 
 
 
-# Step 1: Getting to know your data and initial preprocessing
-
-This section is dedicated to the first look at the data, the first basic preprocessing methods (e.g., duplicates, branching items check), and checking the variable consistency when the data has just been imported.
 
 <!-- 
 INSTRUCTIONS:

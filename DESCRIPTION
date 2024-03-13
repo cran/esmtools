@@ -1,6 +1,6 @@
 Package: esmtools
 Title: Preprocessing Experience Sampling Method (ESM) Data
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: c(
     person("Jordan", "Revol", , "jordan.revol@kuleuven.be", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "https://orcid.org/0000-0001-5511-3617")),
@@ -39,8 +39,8 @@ Language: en-US
 LazyData: true
 RoxygenNote: 7.2.3
 NeedsCompilation: no
-Packaged: 2024-01-10 20:13:28 UTC; Jr
+Packaged: 2024-03-13 18:26:54 UTC; Jr
 Author: Jordan Revol [aut, cre, cph] (<https://orcid.org/0000-0001-5511-3617>),
   Koen Niemeijer [ctb] (<https://orcid.org/0000-0002-0816-534X>)
 Repository: CRAN
-Date/Publication: 2024-01-11 10:00:12 UTC
+Date/Publication: 2024-03-13 19:00:02 UTC

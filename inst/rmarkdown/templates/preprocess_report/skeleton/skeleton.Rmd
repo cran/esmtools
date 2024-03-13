@@ -47,6 +47,24 @@ Note that the commented instructions are not displayed in the rendered document.
 </style>
 
 
+<!-- Javascript code to zoom in and out in the plots. -->
+<!-- Code from Radovan Miletić: https://stackoverflow.com/questions/56361986/zoom-function-in-rmarkdown-html-plot -->
+<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('body').prepend('<div class=\"zoomDiv\"><img src=\"\" class=\"zoomImg\"></div>');
+    // onClick function for all plots (img's)
+    $('img:not(.zoomImg)').click(function() {
+    $('.zoomImg').attr('src', $(this).attr('src')).css({width: '100%'});
+    $('.zoomDiv').css({opacity: '1', width: 'auto', border: '1px solid white', borderRadius: '5px', position: 'fixed', top: '50%', left: '50%', marginRight: '-50%', transform: 'translate(-50%, -50%)', boxShadow: '0px 0px 50px #888888', zIndex: '50', overflow: 'auto', maxHeight: '100%'});
+    });
+    // onClick function for zoomImg
+    $('img.zoomImg').click(function() {
+    $('.zoomDiv').css({opacity: '0', width: '0%'}); 
+    });
+});
+</script>
+
 
 <!-- This first chunk define the global settings and hidden variables of the file. -->
 ```{r, include=FALSE}
@@ -59,9 +77,8 @@ knitr::opts_chunk$set(echo=TRUE, message=FALSE, warning=FALSE)
   
 
 
-This template follows the preprocessing framework described in Revol and al. (under review) and can be found in a R package [esmbooks](https://gitlab.kuleuven.be/ppw-okpiv/researchers/u0148925/esmbooks). 
-
-
+This template follows the preprocessing framework described in Revol and al. (under review) and is stored in a R package [esmbooks](https://gitlab.kuleuven.be/ppw-okpiv/researchers/u0148925/esmbooks). 
+Additional instructions on creating reports and also on preprocessing ESM data can be found on the [ESM Preprocessing Gallery](https://preprocess.esmtools.com/) website. 
 
 
 
@@ -73,7 +90,7 @@ It will be later useful when investigating the data.
 -->
 
 
-# Import
+# Load packages
 
 <!-- INSTRUCTION: before or after each chunk, please add a short description of what is done/displayed, as follows: -->
 
@@ -83,16 +100,16 @@ Import the packages:
 library(ggplot2) # Used to create plots
 ```
 
+
+
+# Step 1: Import data and preliminary preprocessing
+
+This section is dedicated to the first look at the data, the merging of data sources the first basic preprocessing methods (e.g., duplicates, branching items check), and checking the variable consistency when the data has just been imported.
+
 Import the data:
 ```{r}
 data = read.csv("path_to_file.csv")
 ```
-
-
-# Step 1: Getting to know your data and initial preprocessing
-
-This section is dedicated to the first look at the data, the first basic preprocessing methods, and checking the variable consistency when the data has just been imported.
-
 
 <!-- INSTRUCTIONS: the HTML code below (span tags) helps to highlight the important information in the document. -->
 <!-- In particular, the issues discovered and the modifications done to the dataset. -->

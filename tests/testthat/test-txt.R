@@ -1,7 +1,7 @@
 # Test case 1: Default behavior
 test_that("Default values", {
   result <- txt()
-  expect_equal(result, "\n<span class='text_issue'> Issue 1:</span> Description")
+  expect_equal(result, "\n<span class='text_issue'> Issue 1:</span> ")
 })
 
 # Test case 2: Custom values
@@ -14,8 +14,8 @@ test_that("Custom values", {
 test_that("Counting behavior", {
   result1 <- txt(id = "custom_test3") 
   result2 <- txt(id = "custom_test3")
-  expect_equal(result1, "\n<span class='custom_test3'> Issue 1:</span> Description")
-  expect_equal(result2, "\n<span class='custom_test3'> Issue 2:</span> Description")
+  expect_equal(result1, "\n<span class='custom_test3'> Issue 1:</span> ")
+  expect_equal(result2, "\n<span class='custom_test3'> Issue 2:</span> ")
 })
 
 # Test case 4: JSON export with params$json_esm + check JSON

@@ -4,7 +4,7 @@
 \alias{vars_consist}
 \title{Create Unique Values Dataframe}
 \usage{
-vars_consist(.df, group, vars)
+vars_consist(.df, group, vars, max_length = 4)
 }
 \arguments{
 \item{.df}{A dataframe containing the data.}
@@ -12,6 +12,8 @@ vars_consist(.df, group, vars)
 \item{group}{The name of the group variable.}
 
 \item{vars}{A vector of variable names to consider.}
+
+\item{max_length}{The maximum length of the merged values. If the length of the merged values exceeds this value, the values are truncated and an ellipsis is added at the end. Default is 4.}
 }
 \value{
 A dataframe with unique values for each variable within each group modality.

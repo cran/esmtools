@@ -30,8 +30,8 @@ knitr::opts_chunk$set(message=FALSE, warning=FALSE)
 ```
 
 
-This template follows the preprocessing framework described in Revol et al. (2023) and can be found in the R package [esmtools](https://package.esmtools.com). 
-
+This template follows the preprocessing framework described in Revol et al. (2023) and is stored in the R package [esmtools](https://package.esmtools.com). 
+Additional instructions on creating reports and also on preprocessing ESM data can be found on the [ESM Preprocessing Gallery](https://preprocess.esmtools.com/) website.
 
 
 # Import
